@@ -1,0 +1,4 @@
+<?jelly escape-by-default='true'?>
+<div>
+    This plugin provides a generic tool installation type for use in Pipelines.
+</div>
