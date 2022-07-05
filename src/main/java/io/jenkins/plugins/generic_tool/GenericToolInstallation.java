@@ -5,6 +5,7 @@ import hudson.EnvVars;
 import hudson.Extension;
 import hudson.model.EnvironmentSpecific;
 import hudson.model.Node;
+import hudson.model.PersistentDescriptor;
 import hudson.model.TaskListener;
 import hudson.slaves.NodeSpecific;
 import hudson.tools.ToolDescriptor;
@@ -12,6 +13,7 @@ import hudson.tools.ToolInstallation;
 import hudson.tools.ToolProperty;
 import java.io.IOException;
 import java.util.List;
+import org.jenkinsci.Symbol;
 import org.kohsuke.stapler.DataBoundConstructor;
 
 public class GenericToolInstallation extends ToolInstallation implements NodeSpecific<GenericToolInstallation>, EnvironmentSpecific<GenericToolInstallation> {
@@ -32,11 +34,18 @@ public class GenericToolInstallation extends ToolInstallation implements NodeSpe
     }
 
     @Extension
-    public static class DescriptorImpl extends ToolDescriptor<GenericToolInstallation> {
+    @Symbol("generic")
+    public static class DescriptorImpl extends ToolDescriptor<GenericToolInstallation> implements PersistentDescriptor {
         @NonNull
         @Override
         public String getDisplayName() {
             return "Generic Tool";
+        }
+
+        @Override
+        public void setInstallations(GenericToolInstallation... installations) {
+            super.setInstallations(installations);
+            save();
         }
     }
 }
