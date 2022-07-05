@@ -13,6 +13,7 @@ The tool configuration can be found in _Manage Jenkins » Global Tool Configurat
 The tool installations configured there can be used with the `tool` step in Pipelines. 
 
 You can also use [Tool Environment Plugin](https://plugins.jenkins.io/toolenv/) to make these tools available to other job types.
+[Extra Tool Installers Plugin](https://plugins.jenkins.io/extra-tool-installers/) provides additional tool installers that can be used for the Generic Tools you define with this plugin.
 
 ## Contributing
 
