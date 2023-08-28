@@ -16,7 +16,8 @@ import java.util.List;
 import org.jenkinsci.Symbol;
 import org.kohsuke.stapler.DataBoundConstructor;
 
-public class GenericToolInstallation extends ToolInstallation implements NodeSpecific<GenericToolInstallation>, EnvironmentSpecific<GenericToolInstallation> {
+public class GenericToolInstallation extends ToolInstallation
+        implements NodeSpecific<GenericToolInstallation>, EnvironmentSpecific<GenericToolInstallation> {
 
     @DataBoundConstructor
     public GenericToolInstallation(String name, String home, List<? extends ToolProperty<?>> properties) {
@@ -25,12 +26,15 @@ public class GenericToolInstallation extends ToolInstallation implements NodeSpe
 
     @Override
     public GenericToolInstallation forEnvironment(EnvVars environment) {
-        return new GenericToolInstallation(getName(), environment.expand(getHome()), getProperties().toList());
+        return new GenericToolInstallation(
+                getName(), environment.expand(getHome()), getProperties().toList());
     }
 
     @Override
-    public GenericToolInstallation forNode(@NonNull Node node, TaskListener log) throws IOException, InterruptedException {
-        return new GenericToolInstallation(getName(), translateFor(node, log), getProperties().toList());
+    public GenericToolInstallation forNode(@NonNull Node node, TaskListener log)
+            throws IOException, InterruptedException {
+        return new GenericToolInstallation(
+                getName(), translateFor(node, log), getProperties().toList());
     }
 
     @Extension
